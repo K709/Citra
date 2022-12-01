@@ -11,7 +11,5 @@ def browseFiles():
                                                         ".png"),
                                                        ("Pictures",
                                                         ".jpg")))
-    image = cv.imread(filename)
-    image = cv.cvtColor(image, cv.COLOR_BGR2RGB)
-    return image
+    return filename
     
