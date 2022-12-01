@@ -31,11 +31,9 @@ def createFrame():
         
         # load image to be "edited"
         width, height = img.size
-        ori_width, ori_height = img.size
 
         while(width>650 or height>400):
             img = img.resize((int(width/2),int(height/2)))
-            width, height = img.size
             print(width, height)
 
         image = ImageTk.PhotoImage(img)
@@ -99,7 +97,7 @@ def select():
     createFrame()
 
 def picture():
-    picture = ""
+    Tools.picture()
 
 def export():
     export = ""
