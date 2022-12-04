@@ -34,7 +34,7 @@ def createFrame():
 
         while(width>650 or height>400):
             img = img.resize((int(width/2),int(height/2)))
-            print(width, height)
+            width, height = img.size
 
         image = ImageTk.PhotoImage(img)
         original_image = ImageTk.PhotoImage(ori_img.resize((int(width/2),int(height/2))))  # resize image using subsample
@@ -100,7 +100,11 @@ def picture():
     Tools.picture()
 
 def export():
-    export = ""
+    global filter_img,ori_img
+    img = np.array(ori_img)
+    width, height = ori_img.size
+    new_img = np.array(filter_img)
+    Tools.export(new_img, width, height)
 
 def pencil():
     global filter_img, root, ori_img
