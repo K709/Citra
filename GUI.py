@@ -97,7 +97,11 @@ def select():
     createFrame()
 
 def picture():
-    Tools.picture()
+    global ori_img, root, filter_img
+    ori_img = Image.fromarray(Tools.picture())
+    filter_img = ori_img
+    root.destroy()
+    createFrame()
 
 def export():
     global filter_img,ori_img
@@ -121,7 +125,11 @@ def cartoonize():
     createFrame()
 
 def sephia():
-    print
+    global filter_img, root, ori_img
+    img = np.array(ori_img)
+    filter_img = Image.fromarray(Filter.sephia(img))
+    root.destroy()
+    createFrame()
 
 def anaglyph():
     global filter_img, root, ori_img
