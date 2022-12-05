@@ -11,7 +11,9 @@ def browseFiles():
                                           filetypes = (("Pictures",
                                                         ".png"),
                                                        ("Pictures",
-                                                        ".jpg")))
+                                                        ".jpg"),
+                                                        ("Pictures",
+                                                        ".jpeg")))
     return filename
     
 def picture():
@@ -31,13 +33,14 @@ def picture():
         if k%256 == 27:
             # ESC pressed
             print("Escape hit, closing...")
-            break
+            cam.release()
+            cv.destroyAllWindows()
         elif k%256 == 32:
             # SPACE pressed
-            img_name = "opencv_frame_{}.png".format(img_counter)
-            cv.imwrite(img_name, frame)
-            print("{} written!".format(img_name))
-            img_counter += 1
+            image = cv.cvtColor(frame, cv.COLOR_BGR2RGB)
+            cam.release()
+            cv.destroyAllWindows()
+            return image
 
 def export(img, width, height):
     new_img = cv.resize(cv.cvtColor(img,cv.COLOR_RGB2BGR),dsize=[width,height])
