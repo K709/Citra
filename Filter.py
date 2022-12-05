@@ -27,8 +27,37 @@ def cartoonize(img):
 
     return final
 
+def cekSepia(n):
+    if n > 255:
+        return 255
+    else:
+        return n
+
 def sephia(img):
-    print
+    image = np.array(img)
+    for i in range(len(image)):
+        for j in range(len(image[0])):
+            tr = (
+                (image[i, j, 2] * 0.393)
+                + (image[i, j, 1] * 0.769)
+                + (image[i, j, 0] * 0.189)
+            )
+            tg = (
+                (image[i, j, 2] * 0.349)
+                + (image[i, j, 1] * 0.686)
+                + (image[i, j, 0] * 0.168)
+            )
+            tb = (
+                (image[i, j, 2] * 0.272)
+                + (image[i, j, 1] * 0.534)
+                + (image[i, j, 0] * 0.131)
+            )
+            image[
+                i,
+                j,
+            ] = (cekSepia(tb), cekSepia(tg), cekSepia(tr))
+    image=cv.cvtColor(image, cv.COLOR_BGR2RGB)
+    return image
 
 def anaglyph(img):
     add_red = np.full([img.shape[0],img.shape[1],3],[0,0,255], 'uint8')
